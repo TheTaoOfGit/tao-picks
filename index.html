@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tao's Picks — Products I Actually Use & Love</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --card: #222;
+      --accent: #f59e0b;
+      --accent2: #3b82f6;
+      --text: #e5e5e5;
+      --muted: #999;
+      --radius: 12px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      border-bottom: 2px solid var(--accent);
+    }
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    header h1 span { color: var(--accent); }
+    header p.tagline {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+    .affiliate-notice {
+      display: inline-block;
+      background: rgba(245,158,11,0.12);
+      border: 1px solid rgba(245,158,11,0.3);
+      color: var(--accent);
+      font-size: 0.8rem;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-top: 8px;
+    }
+
+    /* Category Filter */
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 30px 20px 10px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .filter-btn {
+      background: var(--surface);
+      color: var(--muted);
+      border: 1px solid #333;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+    .filter-btn.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Product Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      max-width: 1100px;
+      margin: 30px auto 60px;
+      padding: 0 20px;
+    }
+
+    /* Product Card */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid #333;
+      transition: transform 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: contain;
+      background: #fff;
+      padding: 20px;
+    }
+    .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .card-category {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .card-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 6px; }
+    .card-price { font-size: 1.3rem; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+    .card-source {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+    .card-reason {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .card-link {
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .card-link:hover { background: #d97706; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid #333;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 400px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1><span>Tao's</span> Picks</h1>
+  <p class="tagline">Products I've personally bought and loved, or come highly recommended from people I trust.</p>
+  <div class="affiliate-notice">
+    ⓘ This site contains affiliate links. If you purchase through them, I may earn a small commission — at no extra cost to you. Thanks for your support!
+  </div>
+</header>
+
+<div class="filters">
+  <button class="filter-btn active" data-cat="all">All</button>
+</div>
+
+<div class="grid" id="product-grid"></div>
+
+<footer>
+  <p>Curated by <strong>Tao Cheng</strong> · Some links are affiliate links — <a href="#" onclick="alert('This site includes Amazon affiliate links. When you buy through these links, I earn a small referral fee at no extra cost to you. I only recommend products I genuinely use and enjoy.');return false;">learn more</a></p>
+</footer>
+
+<script>
+let products = [];
+
+function init() {
+// Build category buttons
+const categories = [...new Set(products.map(p => p.category))];
+const filtersEl = document.querySelector('.filters');
+categories.forEach(cat => {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn';
+  btn.dataset.cat = cat;
+  btn.textContent = cat;
+  filtersEl.appendChild(btn);
+});
+
+// Render products
+function render(filter) {
+  const grid = document.getElementById('product-grid');
+  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+  grid.innerHTML = filtered.map(p => `
+    <div class="card">
+      <img class="card-img" src="${p.image}" alt="${p.name}"
+           onerror="this.style.background='#f5f5f5';this.style.padding='40px';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%23f5f5f5%22 width=%22400%22 height=%22300%22/><text x=%22200%22 y=%22150%22 text-anchor=%22middle%22 font-family=%22system-ui%22 font-size=%2216%22 fill=%22%23999%22>${encodeURIComponent(p.name)}</text></svg>'">
+      <div class="card-body">
+        <div class="card-category">${p.category}</div>
+        <div class="card-title">${p.name}</div>
+        <div class="card-price">${p.price}</div>
+        <div class="card-source">${p.source}</div>
+        <div class="card-reason">${p.reason}</div>
+        <a class="card-link" href="${p.url}" target="_blank" rel="noopener">View on Amazon ↗</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Filter click handling
+filtersEl.addEventListener('click', e => {
+  if (!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  render(e.target.dataset.cat);
+});
+
+render('all');
+} // end init
+
+fetch('products.json')
+  .then(r => r.json())
+  .then(data => { products = data; init(); })
+  .catch(() => {
+    // Fallback: try loading from script tag
+    if (typeof PRODUCTS !== 'undefined') { products = PRODUCTS; init(); }
+  });
+</script>
+</body>
+</html>

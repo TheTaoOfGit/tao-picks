@@ -1,0 +1,155 @@
+[
+  {
+    "name": "SIMPLI-MAGIC Stainless Steel Trash Can",
+    "category": "Home & Kitchen",
+    "price": "$100",
+    "image": "images/trash-can.jpg",
+    "source": "Personally bought & used",
+    "reason": "This soft-close, fingerprint-resistant trash can is surprisingly well-built for the price. The stainless steel looks sleek in any kitchen, and the filter keeps odors at bay. One of those 'boring' buys that quietly makes life better every day.",
+    "url": "https://www.amazon.com/SIMPLI-MAGIC-Soft-Close-Resistant-Filter-Stainless/dp/B0BTMZLMGD?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Takara Transformers Masterpiece MP-11 Starscream",
+    "category": "Collectibles & Toys",
+    "price": "$225",
+    "image": "images/starscream.jpg",
+    "source": "Personally bought & used",
+    "reason": "If you grew up with Transformers, this Masterpiece figure is next-level. The engineering, paint, and transformation are incredible. Starscream looks amazing both in jet and robot mode — a must-have for any collector.",
+    "url": "https://www.amazon.com/Takara-Transformers-Masterpiece-MP-11-Starscream/dp/B0065VRALK/?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Skechers GOwalk Max Athletic Walking Sneaker",
+    "category": "Footwear",
+    "price": "$55",
+    "image": "images/skechers.jpg",
+    "source": "Personally bought & used",
+    "reason": "These are the comfiest everyday walking shoes I've owned. Ultra-lightweight, great cushioning, and they slip on in a second. Perfect for errands, travel, or just being on your feet all day without fatigue.",
+    "url": "https://www.amazon.com/Skechers-Max-Athletic-Walkking-Sneaker-Black/dp/B08DZPRF2M/?tag=taorecommen0b-20"
+  },
+  {
+    "name": "La Crosse Technology 14\" Atomic Wall Clock",
+    "category": "Home & Kitchen",
+    "price": "$37",
+    "image": "images/wall-clock.jpg",
+    "source": "Personally bought & used",
+    "reason": "Set it and forget it — this clock syncs to the atomic clock signal so it's always perfectly accurate. Automatically adjusts for daylight saving time too. Clean, simple design that looks great in any room.",
+    "url": "https://www.amazon.com/Crosse-Technology-WT-3143A-INT-14-Inch-Atomic/dp/B0002WZRJK?tag=taorecommen0b-20"
+  },
+  {
+    "name": "uni-ball Roller Ball Pens, 0.5mm Micro, Blue (12 Pack)",
+    "category": "Office & Stationery",
+    "price": "$20",
+    "image": "images/uniball.jpg",
+    "source": "Personally bought & used",
+    "reason": "My go-to pen for years. The 0.5mm micro tip writes incredibly smooth and precise, and the ink doesn't smear. Once you try these, you won't go back to cheap ballpoints.",
+    "url": "https://www.amazon.com/Roller-Ball-Stick-Pens-Micro/dp/B00006IE8R?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Victorinox Compact Swiss Army Knife (15 Functions)",
+    "category": "Everyday Carry",
+    "price": "$59",
+    "image": "images/victorinox.jpg",
+    "source": "Personally bought & used",
+    "reason": "Packs 15 tools into a remarkably slim profile — blade, scissors, corkscrew, ballpoint pen, and more. The Compact is the best Swiss Army Knife for everyday carry. Built to last a lifetime.",
+    "url": "https://www.amazon.com/Victorinox-Compact-Red-Swiss-Pocket/dp/B0001P14X6?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Amazon Kindle Scribe (64GB) 2024 — Metallic Jade",
+    "category": "Electronics",
+    "price": "$450",
+    "image": "images/kindle-scribe.jpg",
+    "source": "Personally bought & used",
+    "reason": "The best e-reader for note-takers. Write directly on books and documents with the Premium Pen, and the built-in AI notebook summarization is a game-changer. The Metallic Jade color is gorgeous.",
+    "url": "https://www.amazon.com/dp/B0CZB9Z477?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Amazon Fire TV Stick 4K Max (Wi-Fi 6E)",
+    "category": "Electronics",
+    "price": "$40",
+    "image": "images/firestick.jpg",
+    "source": "Personally bought & used",
+    "reason": "The best bang-for-buck streaming stick. Wi-Fi 6E means no buffering, 4K Dolby Vision looks stunning, and the Alexa remote is genuinely useful. Makes any TV smart instantly.",
+    "url": "https://www.amazon.com/all-new-amazon-fire-tv-stick-4k-max/dp/B0BP9SNVH9?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Moon Pod Bean Bag Chair",
+    "category": "Furniture",
+    "price": "$299",
+    "image": "images/moonpod.png",
+    "source": "Personally bought & used",
+    "reason": "Not your typical bean bag — the micro-bead fill conforms to your body and genuinely feels like floating. Compact enough to move anywhere, and the cover is machine-washable. Perfect for reading, gaming, or just melting into.",
+    "url": "https://www.amazon.com/Moon-Pod-Adult-Bean-Bag-Chair-Large/dp/B08D1PM3CT?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Bandai PG Unleashed RX-78-2 Gundam 1/60 Model Kit",
+    "category": "Collectibles & Toys",
+    "price": "$295",
+    "image": "images/gundam.jpg",
+    "source": "Personally bought & used",
+    "reason": "The pinnacle of Gundam model kits. Insane detail, LED-compatible inner frame, and gorgeous proportions. Building it is a deeply satisfying experience, and the finished kit is a showpiece. A must for any Gunpla fan.",
+    "url": "https://www.amazon.com/Bandai-Hobby-RX-78-2-PGUnleashed-2530615/dp/B08KR436GF?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Takara Tomy Transformers Masterpiece MP-13 Soundwave",
+    "category": "Collectibles & Toys",
+    "price": "$185",
+    "image": "images/soundwave.jpg",
+    "source": "Personally bought & used",
+    "reason": "The definitive Soundwave figure. Transforms into a perfect cassette player, comes with Laserbeak, and the detail is jaw-dropping. A grail piece for any Transformers collector.",
+    "url": "https://www.amazon.com/Takara-Tomy-Transformers-Masterpieces-Soundwave/dp/B008B403VS?tag=taorecommen0b-20"
+  },
+  {
+    "name": "QWERKYWRITER 2 — Black Gold Typewriter Keyboard",
+    "category": "Electronics",
+    "price": "$280",
+    "image": "images/qwerkywriter.jpg",
+    "source": "Personally bought & used",
+    "reason": "A gorgeous retro-typewriter mechanical keyboard with Cherry MX Blue switches, hot-swappable PCB, and wireless connectivity. The aluminum build, integrated tablet stand, and programmable return bar make it as functional as it is beautiful. A real conversation starter on any desk.",
+    "url": "https://www.qwerkywriter.com/collections/most-popular/products/qwerkywriter-2-black-gold"
+  },
+  {
+    "name": "Saint Cloth Myth EX Libra Dohko (Revival Ver.)",
+    "category": "Collectibles & Toys",
+    "price": "$170",
+    "image": "images/libra-dohko.jpg",
+    "source": "Personally bought & used",
+    "reason": "One of the best figures in the Saint Cloth Myth EX line. The Libra Gold Cloth looks stunning, comes with all 12 Libra weapons, and the articulation is fantastic. A must-have for any Saint Seiya fan.",
+    "url": "https://www.amazon.com/TAMASHII-NATIONS-Bandai-Spirits-Action/dp/B0CGZC85TL?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Logitech MX Master 4 Wireless Mouse — Graphite",
+    "category": "Electronics",
+    "price": "$120",
+    "image": "images/mx-master-4.png",
+    "source": "Personally bought & used",
+    "reason": "The gold standard for productivity mice. Haptic feedback scroll wheel, ultra-precise tracking on any surface, USB-C charging, and seamless multi-device switching. Once you use an MX Master, everything else feels cheap.",
+    "url": "https://www.amazon.com/Logitech-Ergonomic-Performance-Ultra-Fast-Scrolling/dp/B0FC5SJNQX?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Blue Yeti USB Microphone — Blackout",
+    "category": "Electronics",
+    "price": "$110",
+    "image": "images/blue-yeti.jpg",
+    "source": "Personally bought & used",
+    "reason": "The go-to USB mic for a reason. Four pickup patterns, plug-and-play simplicity, and broadcast-quality sound. Whether it's podcasting, streaming, or video calls, the Yeti just works — and sounds great doing it.",
+    "url": "https://www.amazon.com/Blue-Microphones-Yeti-Microphone-Blackout/dp/B00N1YPXW2?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Keychron K3 V2 Ultra-Slim Wireless Mechanical Keyboard",
+    "category": "Electronics",
+    "price": "$85",
+    "image": "images/keychron-k3.jpg",
+    "source": "Personally bought & used",
+    "reason": "The perfect low-profile mechanical keyboard. Ultra-slim, wireless with Bluetooth and USB-C, hot-swappable switches, and works seamlessly with Mac and Windows. Great travel keyboard that doesn't compromise on typing feel.",
+    "url": "https://www.amazon.com/Keychron-Profile-Wireless-Mechanical-Keyboard/dp/B08LSJ4RHH?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Samsung 49\" ViewFinity S95UC Curved Ultrawide Monitor",
+    "category": "Electronics",
+    "price": "$1,200",
+    "image": "images/samsung-monitor.jpg",
+    "source": "Personally bought & used",
+    "reason": "Replace two monitors with one immersive 49\" ultrawide. Dual QHD resolution, 120Hz, USB-C with 90W charging, and a built-in KVM switch to control two PCs. The 1000R curve wraps around your field of vision perfectly. A productivity beast.",
+    "url": "https://www.amazon.com/Ultrawide-DisplayPort-DisplayHDR-Adjustable-LS49C954UANXZA/dp/B0CRGJF7WL?tag=taorecommen0b-20"
+  }
+]
