@@ -1,12 +1,39 @@
 [
   {
-    "name": "SIMPLI-MAGIC Stainless Steel Trash Can",
+    "name": "simplehuman 45L Rectangular Step Trash Can",
     "category": "Home & Kitchen",
-    "price": "$100",
-    "image": "images/trash-can.jpg",
+    "price": "$110",
+    "image": "images/simplehuman.png",
     "source": "Personally bought & used",
-    "reason": "This soft-close, fingerprint-resistant trash can is surprisingly well-built for the price. The stainless steel looks sleek in any kitchen, and the filter keeps odors at bay. One of those 'boring' buys that quietly makes life better every day.",
-    "url": "https://www.amazon.com/SIMPLI-MAGIC-Soft-Close-Resistant-Filter-Stainless/dp/B0BTMZLMGD?tag=taorecommen0b-20"
+    "reason": "The gold standard of kitchen trash cans. Soft-close lid, built-in liner pocket for easy bag changes, and the brushed stainless steel looks premium. Solid construction that lasts years. Worth every penny over cheap alternatives.",
+    "url": "https://www.amazon.com/simplehuman-Rectangular-Soft-Close-Stainless-Hands-Free/dp/B0815X9RSG?tag=taorecommen0b-20"
+  },
+  {
+    "name": "simplehuman 9oz Touch-Free Sensor Soap Pump",
+    "category": "Home & Kitchen",
+    "price": "$70",
+    "image": "images/simplehuman-pump.png",
+    "source": "Personally bought & used",
+    "reason": "Touch-free, no-drip, and one charge lasts 3 months. The brushed stainless matches any kitchen or bathroom. Way more hygienic than pushing a pump with dirty hands. One of those small upgrades that feels luxurious.",
+    "url": "https://www.amazon.com/simplehuman-Touch-Free-Automatic-Rechargeable-Stainless/dp/B0CVNGWWX6?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Ridge Magnetic Power Bank 10K mAh — Basecamp Orange",
+    "category": "Electronics",
+    "price": "$79",
+    "image": "images/ridge-powerbank.jpg",
+    "source": "Personally bought & used",
+    "reason": "A 5-in-1 charger that snaps onto your phone via MagSafe. Built-in cable, wireless charging, fast charging, and 10,000mAh capacity in a slim package. The Basecamp Orange color pops. Never worry about a dead phone again.",
+    "url": "https://www.amazon.com/Ridge-Magnetic-Power-Bank-Basecamp/dp/B0DWHDM15Q?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Anker MagGo 3-in-1 Foldable Charging Station",
+    "category": "Electronics",
+    "price": "$110",
+    "image": "images/anker-maggo.png",
+    "source": "Personally bought & used",
+    "reason": "Charges iPhone, Apple Watch, and AirPods simultaneously — and folds flat for travel. Qi2 certified 15W fast charging, adapter included. The ultimate nightstand or travel charging station.",
+    "url": "https://www.amazon.com/Anker-MagGo-Wireless-Charging-Station/dp/B0DDQ71B9P?tag=taorecommen0b-20"
   },
   {
     "name": "Takara Transformers Masterpiece MP-11 Starscream",
