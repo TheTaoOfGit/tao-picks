@@ -269,7 +269,7 @@ function render(filter) {
         <div class="card-price">${p.price}</div>
         <div class="card-source">${p.source}</div>
         <div class="card-reason">${p.reason}</div>
-        <a class="card-link" href="${p.url}" target="_blank" rel="noopener">View on Amazon ↗</a>
+        <a class="card-link" href="${p.url}" target="_blank" rel="noopener">${p.url.includes('amazon.com') ? 'View on Amazon' : p.url.includes('bestbuy.com') ? 'View on Best Buy' : p.url.includes('qwerkywriter') ? 'View on Qwerkywriter' : 'View Product'} ↗</a>
       </div>
     </div>
   `).join('');
