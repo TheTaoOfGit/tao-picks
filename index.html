@@ -37,6 +37,8 @@
       margin-bottom: 8px;
     }
     header h1 span { color: var(--accent); }
+    .tao-link { text-decoration: none; color: inherit; }
+    .tao-link:hover span { text-decoration: underline; }
     header p.tagline {
       font-size: 1.1rem;
       color: var(--muted);
@@ -156,8 +158,49 @@
     }
     footer a { color: var(--accent); text-decoration: none; }
 
-    @media (max-width: 400px) {
-      .grid { grid-template-columns: 1fr; }
+    /* About Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay:target { display: flex; }
+    .modal {
+      background: var(--surface);
+      border: 1px solid #333;
+      border-radius: var(--radius);
+      padding: 36px;
+      max-width: 480px;
+      margin: 20px;
+      position: relative;
+      line-height: 1.7;
+    }
+    .modal h2 { margin-bottom: 12px; font-size: 1.4rem; }
+    .modal p { color: var(--muted); font-size: 1rem; }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 12px; }
+      .card-img { aspect-ratio: 1; padding: 10px; }
+      .card-body { padding: 12px; }
+      .card-title { font-size: 0.9rem; }
+      .card-price { font-size: 1rem; margin-bottom: 6px; }
+      .card-source { display: none; }
+      .card-reason { font-size: 0.8rem; margin-bottom: 10px; }
+      .card-link { padding: 8px 12px; font-size: 0.8rem; }
       header h1 { font-size: 1.6rem; }
     }
   </style>
@@ -165,12 +208,21 @@
 <body>
 
 <header>
-  <h1><span>Tao's</span> Picks</h1>
+  <h1><a href="#about-tao" class="tao-link"><span>Tao's</span></a> Picks</h1>
   <p class="tagline">Products I've personally bought and loved, or come highly recommended from people I trust.</p>
   <div class="affiliate-notice">
     ⓘ This site contains affiliate links. If you purchase through them, I may earn a small commission — at no extra cost to you. Thanks for your support!
   </div>
 </header>
+
+<!-- About Modal -->
+<div class="modal-overlay" id="about-tao">
+  <div class="modal">
+    <a href="#" class="modal-close">&times;</a>
+    <h2>Hi folks! 👋</h2>
+    <p>I am <strong>Tao Cheng</strong> and I love great products. This is a website where I recommend the products I love to you in hope they can also make your life a bit easier and a bit happier. :)</p>
+  </div>
+</div>
 
 <div class="filters">
   <button class="filter-btn active" data-cat="all">All</button>

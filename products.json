@@ -151,5 +151,68 @@
     "source": "Personally bought & used",
     "reason": "Replace two monitors with one immersive 49\" ultrawide. Dual QHD resolution, 120Hz, USB-C with 90W charging, and a built-in KVM switch to control two PCs. The 1000R curve wraps around your field of vision perfectly. A productivity beast.",
     "url": "https://www.amazon.com/Ultrawide-DisplayPort-DisplayHDR-Adjustable-LS49C954UANXZA/dp/B0CRGJF7WL?tag=taorecommen0b-20"
+  },
+  {
+    "name": "ASUS Zenbook S 14 (UX5406) — 3K OLED, Core Ultra 7, 32GB",
+    "category": "Electronics",
+    "price": "$1,200",
+    "image": "images/zenbook-s14.png",
+    "source": "Personally bought & used",
+    "reason": "Insanely thin and light yet packs a punch. The 3K OLED touchscreen is gorgeous, battery life is stellar, and the ceraluminum chassis feels premium. My daily driver for work on the go.",
+    "url": "https://www.bestbuy.com/product/asus-zenbook-s-14-14-3k-oled-touch-screen-laptop-copilot-pc-intel-core-ultra-7-32gb-ram-1tb-ssd-zumaia-gray/JJGGLHJXT8/sku/6615730"
+  },
+  {
+    "name": "Apple AirPods Pro 3",
+    "category": "Electronics",
+    "price": "$249",
+    "image": "images/airpods-pro3.jpg",
+    "source": "Personally bought & used",
+    "reason": "2x better noise cancellation than the previous gen, and it shows. Live Translation is a killer feature for travel, heart rate sensing during workouts is surprisingly accurate, and the spatial audio is immersive. The best wireless earbuds, period.",
+    "url": "https://www.amazon.com/Apple-Cancellation-Translation-Headphones-High-Fidelity/dp/B0FQFB8FMG?tag=taorecommen0b-20"
+  },
+  {
+    "name": "CATAN Board Game (6th Edition)",
+    "category": "Games",
+    "price": "$55",
+    "image": "images/catan.png",
+    "source": "Personally bought & used",
+    "reason": "The quintessential board game. Trade, build, settle — every game plays differently. Easy to learn, endlessly replayable, and perfect for game nights with friends and family. If you only own one board game, make it this one.",
+    "url": "https://www.amazon.com/CATAN-Classic-Strategy-Players-Playtime/dp/B0DYK1ZH2D?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Crave Naturals Glide Thru Detangling Brush (2-Pack)",
+    "category": "Home & Kitchen",
+    "price": "$15",
+    "image": "images/detangling-brush.jpg",
+    "source": "Personally bought & used",
+    "reason": "Works like magic on tangled hair — wet or dry, curly or straight. No pulling, no pain. At this price for a 2-pack, just get one for every bathroom.",
+    "url": "https://www.amazon.com/Crave-Naturals-Detangling-Brushes-Adults/dp/B0B2WYJ6R4?tag=taorecommen0b-20"
+  },
+  {
+    "name": "The Goal (40th Anniversary Edition) — Goldratt & Cox",
+    "category": "Books",
+    "price": "$25",
+    "image": "images/the-goal.jpg",
+    "source": "Personally bought & used",
+    "reason": "A must-read business novel that teaches the Theory of Constraints through a gripping factory turnaround story. Changed how I think about bottlenecks, productivity, and continuous improvement. Relevant to any field.",
+    "url": "https://www.amazon.com/Goal-Process-Ongoing-Improvement/dp/0884271951?tag=taorecommen0b-20"
+  },
+  {
+    "name": "The North Face Recon Everyday Laptop Backpack",
+    "category": "Everyday Carry",
+    "price": "$109",
+    "image": "images/northface-recon.jpg",
+    "source": "Personally bought & used",
+    "reason": "Rugged, water-repellent, and fits a 16\" laptop with room to spare. The FlexVent shoulder straps and padded back panel make it comfortable even fully loaded. My go-to bag for commuting and travel.",
+    "url": "https://www.amazon.com/NORTH-FACE-Everyday-Backpack-Black-NPF/dp/B0CNBCZGRZ?tag=taorecommen0b-20"
+  },
+  {
+    "name": "Apple Watch Ultra 3 (49mm, GPS + Cellular)",
+    "category": "Electronics",
+    "price": "$799",
+    "image": "images/apple-watch-ultra3.jpg",
+    "source": "Personally bought & used",
+    "reason": "The ultimate adventure watch. Rugged titanium case, satellite communications for off-grid safety, and the best health/fitness tracking in the game. Battery easily lasts multi-day trips. If you're serious about fitness or the outdoors, this is the one.",
+    "url": "https://www.amazon.com/Apple-Multisport-Smartwatch-Satellite-Communications/dp/B0FQFHVZYL?tag=taorecommen0b-20"
   }
 ]
