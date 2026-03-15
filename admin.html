@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tao's Picks — Admin</title>
+  <style>
+    :root { --bg: #0f0f0f; --surface: #1a1a1a; --card: #222; --accent: #f59e0b; --text: #e5e5e5; --muted: #999; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 20px; }
+
+    .header { text-align: center; margin-bottom: 24px; }
+    .header h1 { font-size: 1.6rem; margin-bottom: 6px; }
+    .header h1 span { color: var(--accent); }
+    .header p { color: var(--muted); font-size: 0.9rem; }
+
+    .actions { display: flex; gap: 10px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+    .btn {
+      padding: 10px 20px; border: none; border-radius: 8px; font-size: 0.9rem;
+      font-weight: 600; cursor: pointer; transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-secondary { background: #333; color: var(--text); }
+    .btn-danger { background: #dc2626; color: #fff; }
+
+    .toast {
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      background: #16a34a; color: #fff; padding: 10px 24px; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600; display: none; z-index: 200;
+    }
+
+    .product-list { max-width: 800px; margin: 0 auto; }
+    .product-item {
+      background: var(--card); border: 1px solid #333; border-radius: 12px;
+      padding: 16px; margin-bottom: 12px; display: flex; gap: 16px; align-items: flex-start;
+    }
+    .product-item img {
+      width: 80px; height: 80px; object-fit: contain; background: #fff;
+      border-radius: 8px; padding: 6px; flex-shrink: 0;
+    }
+    .product-info { flex: 1; min-width: 0; }
+    .product-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; }
+    .product-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; }
+    .product-meta span { color: var(--accent); font-weight: 600; }
+    .product-comment {
+      width: 100%; background: var(--surface); border: 1px solid #444;
+      color: var(--text); border-radius: 8px; padding: 10px; font-size: 0.85rem;
+      font-family: inherit; resize: vertical; min-height: 60px; line-height: 1.5;
+    }
+    .product-comment:focus { outline: none; border-color: var(--accent); }
+    .product-comment.modified { border-color: var(--accent); }
+    .comment-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+    .char-count { font-size: 0.7rem; color: var(--muted); }
+    .btn-save-one {
+      background: var(--accent); color: #000; border: none; border-radius: 6px;
+      padding: 4px 14px; font-size: 0.78rem; font-weight: 600; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-save-one:hover { background: #d97706; }
+    .btn-save-one.saved { background: #16a34a; color: #fff; }
+
+    @media (max-width: 600px) {
+      .product-item { flex-direction: column; }
+      .product-item img { width: 60px; height: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1><span>Tao's Picks</span> — Edit Comments</h1>
+  <p>Edit your product recommendations below. Changes auto-save to your browser.</p>
+</div>
+
+<div class="actions">
+  <button class="btn btn-primary" onclick="saveAll()">Save All</button>
+  <button class="btn btn-primary" onclick="exportJSON()">Export products.json</button>
+  <button class="btn btn-secondary" onclick="location.href='index.html'">View Site</button>
+  <button class="btn btn-danger" onclick="resetAll()">Reset to Defaults</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="product-list" id="product-list"></div>
+
+<script>
+let products = [];
+let originalReasons = {};
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 2000);
+}
+
+function render() {
+  const saved = JSON.parse(localStorage.getItem('tao-picks-comments') || '{}');
+  const list = document.getElementById('product-list');
+  list.innerHTML = products.map((p, i) => {
+    const comment = saved[p.name] !== undefined ? saved[p.name] : p.reason;
+    const modified = saved[p.name] !== undefined && saved[p.name] !== p.reason;
+    return `
+    <div class="product-item">
+      <img src="${p.image}" alt="${p.name}" onerror="this.style.background='#ddd'">
+      <div class="product-info">
+        <div class="product-name">${p.name}</div>
+        <div class="product-meta"><span>${p.price}</span> · ${p.category}</div>
+        <textarea class="product-comment ${modified ? 'modified' : ''}"
+          data-name="${p.name}" data-index="${i}"
+          oninput="onEdit(this)">${comment}</textarea>
+        <div class="comment-footer">
+          <span class="char-count">${comment.length} chars</span>
+          <button class="btn-save-one" data-index="${i}" data-name="${p.name}" onclick="saveOne(this)">Save</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function onEdit(el) {
+  const saved = JSON.parse(localStorage.getItem('tao-picks-comments') || '{}');
+  const name = el.dataset.name;
+  const orig = products[el.dataset.index].reason;
+  if (el.value === orig) {
+    delete saved[name];
+    el.classList.remove('modified');
+  } else {
+    saved[name] = el.value;
+    el.classList.add('modified');
+  }
+  localStorage.setItem('tao-picks-comments', JSON.stringify(saved));
+  const footer = el.nextElementSibling;
+  footer.querySelector('.char-count').textContent = el.value.length + ' chars';
+  const btn = footer.querySelector('.btn-save-one');
+  btn.classList.remove('saved');
+  btn.textContent = 'Save';
+}
+
+function saveOne(btn) {
+  const name = btn.dataset.name;
+  const idx = btn.dataset.index;
+  const textarea = document.querySelector(`.product-comment[data-index="${idx}"]`);
+  const saved = JSON.parse(localStorage.getItem('tao-picks-comments') || '{}');
+  const orig = products[idx].reason;
+  if (textarea.value !== orig) {
+    saved[name] = textarea.value;
+  } else {
+    delete saved[name];
+  }
+  localStorage.setItem('tao-picks-comments', JSON.stringify(saved));
+  btn.textContent = 'Saved!';
+  btn.classList.add('saved');
+  setTimeout(() => { btn.classList.remove('saved'); btn.textContent = 'Save'; }, 1500);
+}
+
+function saveAll() {
+  const textareas = document.querySelectorAll('.product-comment');
+  const saved = {};
+  textareas.forEach(el => {
+    const orig = products[el.dataset.index].reason;
+    if (el.value !== orig) saved[el.dataset.name] = el.value;
+  });
+  localStorage.setItem('tao-picks-comments', JSON.stringify(saved));
+  showToast('Saved to browser!');
+}
+
+function exportJSON() {
+  const saved = JSON.parse(localStorage.getItem('tao-picks-comments') || '{}');
+  const exported = products.map(p => ({
+    ...p,
+    reason: saved[p.name] !== undefined ? saved[p.name] : p.reason
+  }));
+  const blob = new Blob([JSON.stringify(exported, null, 2) + '\n'], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'products.json';
+  a.click();
+  showToast('Exported products.json!');
+}
+
+function resetAll() {
+  if (!confirm('Reset all comments to defaults from products.json?')) return;
+  localStorage.removeItem('tao-picks-comments');
+  render();
+  showToast('Reset to defaults');
+}
+
+fetch('products.json')
+  .then(r => r.json())
+  .then(data => { products = data; render(); });
+</script>
+</body>
+</html>

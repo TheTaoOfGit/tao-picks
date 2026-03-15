@@ -282,7 +282,11 @@ render('all');
 
 fetch('products.json')
   .then(r => r.json())
-  .then(data => { products = data; init(); })
+  .then(data => {
+    const saved = JSON.parse(localStorage.getItem('tao-picks-comments') || '{}');
+    products = data.map(p => saved[p.name] !== undefined ? { ...p, reason: saved[p.name] } : p);
+    init();
+  })
   .catch(() => {
     if (typeof PRODUCTS !== 'undefined') { products = PRODUCTS; init(); }
   });
