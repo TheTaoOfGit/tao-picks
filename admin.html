@@ -41,8 +41,18 @@
     }
     .product-info { flex: 1; min-width: 0; }
     .product-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; }
-    .product-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; }
+    .product-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; }
     .product-meta span { color: var(--accent); font-weight: 600; }
+    .product-stats {
+      font-size: 0.8rem; color: var(--muted); margin-bottom: 8px;
+      display: flex; gap: 12px; align-items: center;
+    }
+    .product-stats strong { color: var(--text); }
+    .purchase-input {
+      width: 50px; background: var(--surface); border: 1px solid #444; color: var(--text);
+      border-radius: 4px; padding: 2px 6px; font-size: 0.8rem; text-align: center;
+    }
+    .purchase-input:focus { outline: none; border-color: var(--accent); }
     .product-comment {
       width: 100%; background: var(--surface); border: 1px solid #444;
       color: var(--text); border-radius: 8px; padding: 10px; font-size: 0.85rem;
@@ -84,9 +94,36 @@
 
 <div class="product-list" id="product-list"></div>
 
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyANK1yEcFEXr5rc3u-76w3eyQGdZKBxpZM",
+  authDomain: "tao-picks.firebaseapp.com",
+  databaseURL: "https://tao-picks-default-rtdb.firebaseio.com",
+  projectId: "tao-picks",
+  storageBucket: "tao-picks.firebasestorage.app",
+  messagingSenderId: "718324483279",
+  appId: "1:718324483279:web:06a97d51b09716044223ba"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
 let products = [];
 let originalReasons = {};
+let stats = {};
+
+function safeKey(name) { return name.replace(/[.#$\[\]/]/g, '_'); }
+
+function loadStats() {
+  return db.ref('stats').once('value').then(snap => { stats = snap.val() || {}; }).catch(() => { stats = {}; });
+}
+
+function updatePurchases(name, value) {
+  const count = parseInt(value) || 0;
+  db.ref('stats/' + safeKey(name) + '/purchases').set(count);
+  showToast('Purchases updated for ' + name);
+}
 
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -107,6 +144,12 @@ function render() {
       <div class="product-info">
         <div class="product-name">${p.name}</div>
         <div class="product-meta"><span>${p.price}</span> · ${p.category}</div>
+        <div class="product-stats">
+          <span><strong>${(stats[safeKey(p.name)] || {}).clicks || 0}</strong> clicks</span>
+          <span>Purchases: <input type="number" class="purchase-input" min="0"
+            value="${(stats[safeKey(p.name)] || {}).purchases || 0}"
+            onchange="updatePurchases('${p.name.replace(/'/g, "\\'")}', this.value)"></span>
+        </div>
         <textarea class="product-comment ${modified ? 'modified' : ''}"
           data-name="${p.name}" data-index="${i}"
           oninput="onEdit(this)">${comment}</textarea>
@@ -189,7 +232,11 @@ function resetAll() {
 
 fetch('products.json')
   .then(r => r.json())
-  .then(data => { products = data; render(); });
+  .then(data => { products = data; return loadStats(); })
+  .then(() => {
+    render();
+    db.ref('stats').on('value', snap => { stats = snap.val() || {}; render(); });
+  });
 </script>
 </body>
 </html>

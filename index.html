@@ -140,6 +140,14 @@
       transition: background 0.2s;
     }
     .card-link:hover { background: #d97706; }
+    .card-stats {
+      display: flex;
+      gap: 12px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .card-stats span { display: flex; align-items: center; gap: 4px; }
 
     /* Footer */
     footer {
@@ -242,8 +250,44 @@
   <div class="affiliate-notice">Some links are affiliate links — I may earn a small commission at no extra cost to you.</div>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script>
+// Firebase setup
+const firebaseConfig = {
+  apiKey: "AIzaSyANK1yEcFEXr5rc3u-76w3eyQGdZKBxpZM",
+  authDomain: "tao-picks.firebaseapp.com",
+  databaseURL: "https://tao-picks-default-rtdb.firebaseio.com",
+  projectId: "tao-picks",
+  storageBucket: "tao-picks.firebasestorage.app",
+  messagingSenderId: "718324483279",
+  appId: "1:718324483279:web:06a97d51b09716044223ba",
+  measurementId: "G-1LFKLE77PP"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
 let products = [];
+let stats = {}; // { productKey: { clicks: N, purchases: N } }
+
+// Create a safe key from product name (Firebase keys can't have . $ # [ ] /)
+function safeKey(name) {
+  return name.replace(/[.#$\[\]/]/g, '_');
+}
+
+// Load stats from Firebase
+function loadStats() {
+  return db.ref('stats').once('value').then(snap => {
+    stats = snap.val() || {};
+  }).catch(() => { stats = {}; });
+}
+
+// Track a click
+function trackClick(name) {
+  const key = safeKey(name);
+  const ref = db.ref('stats/' + key + '/clicks');
+  ref.transaction(current => (current || 0) + 1);
+}
 
 function init() {
 const categories = [...new Set(products.map(p => p.category))];
@@ -259,23 +303,42 @@ function render(filter) {
   const grid = document.getElementById('product-grid');
   const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
   document.getElementById('product-count').textContent = filtered.length + ' product' + (filtered.length !== 1 ? 's' : '');
-  grid.innerHTML = filtered.map(p => `
+  grid.innerHTML = filtered.map(p => {
+    const key = safeKey(p.name);
+    const s = stats[key] || {};
+    const clicks = s.clicks || 0;
+    const purchases = s.purchases || 0;
+    return `
     <div class="card">
-      <img class="card-img" src="${p.image}" alt="${p.name}"
-           onerror="this.style.background='#f5f5f5';this.style.padding='40px';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%23f5f5f5%22 width=%22400%22 height=%22300%22/><text x=%22200%22 y=%22150%22 text-anchor=%22middle%22 font-family=%22system-ui%22 font-size=%2216%22 fill=%22%23999%22>${encodeURIComponent(p.name)}</text></svg>'">
+      <a href="${p.url}" target="_blank" rel="noopener" onclick="trackClick('${p.name.replace(/'/g, "\\'")}')">
+        <img class="card-img" src="${p.image}" alt="${p.name}"
+             onerror="this.style.background='#f5f5f5';this.style.padding='40px';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22><rect fill=%22%23f5f5f5%22 width=%22400%22 height=%22300%22/><text x=%22200%22 y=%22150%22 text-anchor=%22middle%22 font-family=%22system-ui%22 font-size=%2216%22 fill=%22%23999%22>${encodeURIComponent(p.name)}</text></svg>'">
+      </a>
       <div class="card-body">
         <div class="card-category">${p.category}</div>
         <div class="card-title">${p.name}</div>
         <div class="card-price">${p.price}</div>
+        <div class="card-stats">
+          <span>${clicks} click${clicks !== 1 ? 's' : ''}</span>
+          <span>${purchases} purchase${purchases !== 1 ? 's' : ''}</span>
+        </div>
         <div class="card-source">${p.source}</div>
         <div class="card-reason">${p.reason}</div>
-        <a class="card-link" href="${p.url}" target="_blank" rel="noopener">${p.url.includes('amazon.com') ? 'View on Amazon' : p.url.includes('bestbuy.com') ? 'View on Best Buy' : p.url.includes('qwerkywriter') ? 'View on Qwerkywriter' : 'View Product'} ↗</a>
+        <a class="card-link" href="${p.url}" target="_blank" rel="noopener" onclick="trackClick('${p.name.replace(/'/g, "\\'")}')">
+          ${p.url.includes('amazon.com') ? 'View on Amazon' : p.url.includes('bestbuy.com') ? 'View on Best Buy' : p.url.includes('qwerkywriter') ? 'View on Qwerkywriter' : 'View Product'} ↗
+        </a>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 selectEl.addEventListener('change', () => render(selectEl.value));
+
+// Listen for real-time stats updates
+db.ref('stats').on('value', snap => {
+  stats = snap.val() || {};
+  render(selectEl.value);
+});
 
 render('all');
 } // end init
@@ -285,8 +348,9 @@ fetch('products.json')
   .then(data => {
     const saved = JSON.parse(localStorage.getItem('tao-picks-comments') || '{}');
     products = data.map(p => saved[p.name] !== undefined ? { ...p, reason: saved[p.name] } : p);
-    init();
+    return loadStats();
   })
+  .then(() => init())
   .catch(() => {
     if (typeof PRODUCTS !== 'undefined') { products = PRODUCTS; init(); }
   });
